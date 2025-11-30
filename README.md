@@ -81,17 +81,30 @@ EOL計画出力先: docs/eol-plan.md
 
 指定がない場合は、プロジェクトルートに `eol-plan.md` が作成されます。
 
+#### `/eol-update` - アップデート実行
+
+`/eol-plan` で作成した計画書に基づいて、実際のアップデート作業を実行します。
+
+```bash
+# 次のフェーズを実行
+/eol-update
+
+# 特定フェーズを実行
+/eol-update phase0    # 事前準備（テスト追加、ベースライン確立）
+/eol-update phase1    # Node.js/TypeScript更新
+/eol-update phase3    # 主要フレームワーク更新
+
+# 全フェーズを順次実行
+/eol-update all
+```
+
+各フェーズ完了後に自動でlint/testを実行し、問題がないことを確認します。
+
 ### サブエージェント
 
-#### `library-update-analyzer`
+#### `library-update-analyzer`（調査用）
 
 特定のライブラリのアップデート影響を詳細に調査します。
-
-```
-ライブラリ: react
-現在のバージョン: 18.2.0
-アップグレード先バージョン: 19.0.0
-```
 
 調査内容:
 - 破壊的変更と影響範囲
@@ -99,15 +112,35 @@ EOL計画出力先: docs/eol-plan.md
 - 既存コードへの影響箇所
 - テストカバレッジと追加テスト要件
 
+#### `phase-executor`（実行用）
+
+計画書のフェーズを実行します。
+
+実行内容:
+- パッケージ更新（npm/yarn/pnpm/bun対応）
+- Node.jsバージョン更新（mise/nvm/asdf対応）
+- 破壊的変更に対応したコード修正
+- lint/test/build実行と結果確認
+
 ### スキル
 
-プラグインには3つのスキルが含まれており、必要に応じて自動的に活用されます。
+プラグインには6つのスキルが含まれており、必要に応じて自動的に活用されます。
+
+#### 調査系スキル
 
 | スキル | 説明 |
 |--------|------|
 | `library-release-checker` | GitHubや公式ドキュメントからリリース情報を収集 |
 | `dependency-analyzer` | 依存関係の互換性とEOL状況を分析 |
 | `code-impact-checker` | 既存コードへの影響とテストカバレッジを確認 |
+
+#### 実行系スキル
+
+| スキル | 説明 |
+|--------|------|
+| `package-updater` | npm/yarn/pnpm/bunでパッケージ更新、mise/nvm/asdfでNode.js更新 |
+| `code-migrator` | 破壊的変更に対応したimport文・API呼び出し・設定ファイルの修正 |
+| `test-runner` | lint/test/build実行と結果解析、エラー時の修正提案 |
 
 ## 出力例
 
@@ -156,21 +189,23 @@ EOL計画出力先: docs/eol-plan.md
 ```
 claude-plugin/
 ├── .claude-plugin/
-│   └── marketplace.json     # マーケットプレイス設定
-├── plugin/                   # fe-eol-checker プラグイン
+│   └── marketplace.json         # マーケットプレイス設定
+├── plugin/                       # fe-eol-checker プラグイン
 │   ├── .claude-plugin/
-│   │   └── plugin.json      # プラグイン設定
+│   │   └── plugin.json          # プラグイン設定
 │   ├── commands/
-│   │   └── eol-plan.md      # /eol-plan コマンド
+│   │   ├── eol-plan.md          # /eol-plan 計画作成コマンド
+│   │   └── eol-update.md        # /eol-update 実行コマンド
 │   ├── agents/
-│   │   └── library-update-analyzer.md  # サブエージェント
+│   │   ├── library-update-analyzer.md  # 調査用エージェント
+│   │   └── phase-executor.md           # 実行用エージェント
 │   └── skills/
-│       ├── library-release-checker/
-│       │   └── SKILL.md     # リリース情報調査スキル
-│       ├── dependency-analyzer/
-│       │   └── SKILL.md     # 依存関係分析スキル
-│       └── code-impact-checker/
-│           └── SKILL.md     # コード影響分析スキル
+│       ├── library-release-checker/    # リリース情報調査
+│       ├── dependency-analyzer/        # 依存関係分析
+│       ├── code-impact-checker/        # コード影響分析
+│       ├── package-updater/            # パッケージ更新
+│       ├── code-migrator/              # コード移行
+│       └── test-runner/                # テスト実行
 └── README.md
 ```
 
