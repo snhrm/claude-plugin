@@ -226,8 +226,8 @@ cat package.json
 1. **Phase 1: ランタイム・言語基盤** - Node.js, TypeScript
 2. **Phase 2: 品質担保ツール** - ESLint, Prettier, Jest/Vitest, Testing Library等
 3. **Phase 3: 主要フレームワーク** - Next.js, React, Vue等
-4. **Phase 4: 状態管理・データ取得** - TanStack Query, Jotai, Zustand, SWR等
-5. **Phase 5: UIライブラリ・その他** - MUI, Chakra, Tailwind, ユーティリティ等
+4. **Phase 4: UIライブラリ** - MUI, Chakra, Tailwind, Radix等
+5. **Phase 5: 状態管理・データ取得・その他** - TanStack Query, Jotai, Zustand, SWR, ユーティリティ等
 6. **Phase 6: ライブラリ置換** - 別ライブラリへの移行（該当する場合）
 
 **重要**: 各Phaseの完了時に必ずlint/testを実行し、問題がないことを確認してから次のPhaseに進む
@@ -261,16 +261,16 @@ react: 16.8.0 → 17.0.0 (確認) → 18.0.0 (確認) → 19.0.0 (確認)  ✅
   Phase 1: Node.js 20 → 22
   Phase 2: ESLint等を互換バージョンへ
   Phase 3: React 17 → 18
-  Phase 4: TanStack Query 3 → 4
-  Phase 5: UIライブラリを互換バージョンへ
+  Phase 4: UIライブラリを互換バージョンへ
+  Phase 5: TanStack Query 3 → 4
   → lint/test確認 ✅
 
 ■ サイクル2（さらに1メジャー上げる）
   Phase 1: Node.js 22 → 24
   Phase 2: ESLint等を互換バージョンへ
   Phase 3: React 18 → 19
-  Phase 4: TanStack Query 4 → 5
-  Phase 5: UIライブラリを互換バージョンへ
+  Phase 4: UIライブラリを互換バージョンへ
+  Phase 5: TanStack Query 4 → 5
   → lint/test確認 ✅
 ```
 
@@ -285,8 +285,8 @@ react: 16.8.0 → 17.0.0 (確認) → 18.0.0 (確認) → 19.0.0 (確認)  ✅
 | 1 | ランタイム・言語基盤 | 他のすべてのライブラリの動作基盤となるため最初に |
 | 2 | 品質担保ツール | 以降のアップデートで問題を正しく検知するため |
 | 3 | 主要フレームワーク | アプリケーションの中核。周辺ライブラリより先に安定させる |
-| 4 | 状態管理・データ取得 | フレームワークに依存するため、フレームワーク更新後に |
-| 5 | UIライブラリ・その他 | 最も影響範囲が限定的なため最後に |
+| 4 | UIライブラリ | フレームワークのバージョンに依存することが多いため、フレームワーク更新後に |
+| 5 | 状態管理・データ取得・その他 | UIと連携するため、UIライブラリ更新後に。影響範囲も限定的 |
 | 6 | ライブラリ置換 | 既存コードの大幅な変更を伴うため最後に |
 
 ---

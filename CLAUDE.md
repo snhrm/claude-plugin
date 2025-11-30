@@ -58,8 +58,8 @@ Phase 0〜6の順序でアップグレードを計画:
 - Phase 1: ランタイム・言語基盤（Node.js, TypeScript）
 - Phase 2: 品質担保ツール（ESLint, Jest/Vitest）
 - Phase 3: 主要フレームワーク（Next.js, React）
-- Phase 4: 状態管理・データ取得（TanStack Query, Jotai）
-- Phase 5: UIライブラリ・その他
+- Phase 4: UIライブラリ（MUI, Chakra, Tailwind）
+- Phase 5: 状態管理・データ取得・その他（TanStack Query, Jotai）
 - Phase 6: ライブラリ置換
 
 複数メジャーバージョンを上げる場合は、Phase 1〜6を複数サイクル繰り返す。
