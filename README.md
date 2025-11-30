@@ -18,10 +18,10 @@ Claude Code内で以下のコマンドを実行:
 
 ```bash
 # 1. マーケットプレイスを追加
-/plugin marketplace add snhrm/claude-fe-eol-plugin
+/plugin marketplace add snhrm/claude-plugin
 
 # 2. プラグインをインストール
-/plugin install claude-fe-eol-plugin@claude-fe-eol-plugin
+/plugin install fe-eol-checker@claude-plugin
 ```
 
 または対話型メニューで:
@@ -35,10 +35,10 @@ Claude Code内で以下のコマンドを実行:
 プラグインの内容をプロジェクトの `.claude/` ディレクトリにコピー:
 
 ```bash
-git clone https://github.com/snhrm/claude-fe-eol-plugin.git
-cp -r claude-fe-eol-plugin/plugin/skills /path/to/your-project/.claude/
-cp -r claude-fe-eol-plugin/plugin/agents /path/to/your-project/.claude/
-cp -r claude-fe-eol-plugin/plugin/commands /path/to/your-project/.claude/
+git clone https://github.com/snhrm/claude-plugin.git
+cp -r claude-plugin/plugin/skills /path/to/your-project/.claude/
+cp -r claude-plugin/plugin/agents /path/to/your-project/.claude/
+cp -r claude-plugin/plugin/commands /path/to/your-project/.claude/
 ```
 
 ## アンインストール
@@ -150,10 +150,10 @@ EOL計画出力先: docs/eol-plan.md
 ## プラグイン構造
 
 ```
-claude-fe-eol-plugin/
+claude-plugin/
 ├── .claude-plugin/
 │   └── marketplace.json     # マーケットプレイス設定
-├── plugin/
+├── plugin/                   # fe-eol-checker プラグイン
 │   ├── .claude-plugin/
 │   │   └── plugin.json      # プラグイン設定
 │   ├── commands/

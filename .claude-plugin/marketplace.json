@@ -1,12 +1,12 @@
 {
-  "name": "claude-fe-eol-plugin",
+  "name": "claude-plugin",
   "owner": {
     "name": "snhrm",
     "url": "https://github.com/snhrm"
   },
   "plugins": [
     {
-      "name": "claude-fe-eol-plugin",
+      "name": "fe-eol-checker",
       "source": "./plugin",
       "description": "フロントエンドの依存パッケージのEOL（End of Life）状況をチェックし、サポート終了やセキュリティリスクのあるパッケージを検出するプラグイン"
     }
