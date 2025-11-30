@@ -12,22 +12,25 @@
 
 ## インストール
 
-### 方法1: GitHubからプラグインをインストール（推奨）
+### 方法1: マーケットプレイスからインストール（推奨）
+
+Claude Code内で以下のコマンドを実行:
 
 ```bash
-claude plugin add https://github.com/snhrm/claude-fe-eol-plugin
+# 1. マーケットプレイスを追加
+/plugin marketplace add snhrm/claude-fe-eol-plugin
+
+# 2. プラグインをインストール
+/plugin install claude-fe-eol-plugin@claude-fe-eol-plugin
 ```
 
-### 方法2: ローカルパスからインストール
-
-リポジトリをクローンしてローカルからインストール:
-
+または対話型メニューで:
 ```bash
-git clone https://github.com/snhrm/claude-fe-eol-plugin.git
-claude plugin add ./claude-fe-eol-plugin
+/plugin
 ```
+→ 「Browse Plugins」を選択してインストール
 
-### 方法3: プロジェクトにコピー
+### 方法2: プロジェクトにコピー
 
 プラグインの内容をプロジェクトの `.claude/` ディレクトリにコピー:
 
@@ -41,8 +44,9 @@ cp -r claude-fe-eol-plugin/commands /path/to/your-project/.claude/
 ## アンインストール
 
 ```bash
-claude plugin remove claude-fe-eol-plugin
+/plugin
 ```
+→ 「Manage Plugins」→ プラグインを選択して削除
 
 ## 使い方
 
