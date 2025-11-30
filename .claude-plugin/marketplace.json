@@ -7,7 +7,7 @@
   "plugins": [
     {
       "name": "claude-fe-eol-plugin",
-      "source": "..",
+      "source": "./..",
       "description": "フロントエンドの依存パッケージのEOL（End of Life）状況をチェックし、サポート終了やセキュリティリスクのあるパッケージを検出するプラグイン",
       "version": "1.0.0",
       "author": {
